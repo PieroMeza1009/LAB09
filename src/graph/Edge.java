@@ -13,4 +13,21 @@ public class Edge {
         this.refDest = refDest;
         this.weight = weight;
     }
+    public Vertex<E> getRefDest() {
+        return refDest;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Edge<?>) {
+            Edge<E> e = (Edge<E>) o;
+            return this.refDest.equals(e.refDest);
+        }
+        return false;
+    }
+
 }
