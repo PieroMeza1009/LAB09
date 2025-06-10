@@ -25,4 +25,11 @@ public class GraphLink<E> {
         }
     }
 
+    public boolean searchVertex(E data) {
+        return listVertex.search(new Vertex<E>(data)) != null;
+    }
+
+    public boolean searchEdge(E verOri, E verDes) {
+        Vertex<E> vOri = listVertex.search(new Vertex<E>(verOri));
+
 }
