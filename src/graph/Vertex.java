@@ -1,14 +1,16 @@
 package graph;
 
-public class Vertex {
-    public String data;
-    public Vertex next;
-    public Edge adjList;
+public class Vertex<E> {
+    private E data;
+    protected ListLinked<Edge<E>> listAdj;
 
-    public Vertex(String data) {
+    public Vertex(E data) {
         this.data = data;
-        this.next = null;
-        this.adjList = null;
+        listAdj = new ListLinked<Edge<E>>();
+    }
+
+    public E getData() {
+        return data;
     }
 
 }
