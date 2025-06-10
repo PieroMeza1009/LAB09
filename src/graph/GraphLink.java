@@ -43,4 +43,22 @@ public class GraphLink<E> {
         return this.listVertex.toString();
     }
 
+    
+    public void removeVertex(E data) {
+    Vertex<E> vRemove = listVertex.search(new Vertex<E>(data));
+    if (vRemove == null) return;
+
+    // Elimina aristas hacia vRemove
+    ListLinked.Node<Vertex<E>> current = listVertex.getHead();
+    while (current != null) {
+        current.data.listAdj.remove(new Edge<E>(vRemove));
+        current = current.next;
+    }
+
+    // Elimina el vértice
+    listVertex.remove(vRemove);
+}
+
+
+
 }
