@@ -29,5 +29,12 @@ public class Edge {
         }
         return false;
     }
+    @Override
+    public String toString() {
+        if (this.weight > -1)
+            return refDest.getData() + " [" + this.weight + "], ";
+        else
+            return refDest.getData() + ", ";
+    }
 
 }
