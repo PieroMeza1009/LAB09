@@ -16,14 +16,14 @@ public class GraphLink<E> {
         }
     }
 
-    public void insertEdge(E verOri, E verDes) {
-        Vertex<E> vOri = listVertex.search(new Vertex<E>(verOri));
-        Vertex<E> vDes = listVertex.search(new Vertex<E>(verDes));
-        if (vOri != null && vDes != null) {
-            if (vOri.listAdj.search(new Edge<E>(vDes)) == null)
-                vOri.listAdj.insertLast(new Edge<E>(vDes));
-            if (vDes.listAdj.search(new Edge<E>(vOri)) == null)
-                vDes.listAdj.insertLast(new Edge<E>(vOri)); // porque es grafo no dirigido
+public void insertEdge(E verOri, E verDes) {
+    Vertex<E> vOri = listVertex.search(new Vertex<>(verOri));
+    Vertex<E> vDes = listVertex.search(new Vertex<>(verDes));
+    if (vOri != null && vDes != null) {
+        if (vOri.listAdj.search(new Edge<>(vDes)) == null)
+            vOri.listAdj.insertLast(new Edge<>(vDes));
+        if (vDes.listAdj.search(new Edge<>(vOri)) == null)
+            vDes.listAdj.insertLast(new Edge<>(vOri)); // porque es grafo no dirigido
         }
     }
 
