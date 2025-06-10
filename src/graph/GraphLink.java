@@ -15,5 +15,8 @@ public class GraphLink<E> {
     }
 
     public void insertEdge(E verOri, E verDes) {
+        Vertex<E> vOri = listVertex.search(new Vertex<E>(verOri));
+        Vertex<E> vDes = listVertex.search(new Vertex<E>(verDes));
+        if (vOri != null && vDes != null) {
 
 }
