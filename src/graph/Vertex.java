@@ -5,4 +5,10 @@ public class Vertex {
     public Vertex next;
     public Edge adjList;
 
+    public Vertex(String data) {
+        this.data = data;
+        this.next = null;
+        this.adjList = null;
+    }
+
 }
