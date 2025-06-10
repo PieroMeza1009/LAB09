@@ -70,3 +70,20 @@ public class GraphLink<E> {
         if (start != null)
             dfsRecursive(start, visited);
     }
+
+    private void dfsRecursive(Vertex<E> vertex, HashSet<E> visited) {
+        if (visited.contains(vertex.getData()))
+            return;
+
+        System.out.println(vertex.getData());
+        visited.add(vertex.getData());
+
+        ListLinked.Node<Edge<E>> current = vertex.listAdj.getHead();
+        while (current != null) {
+            Vertex<E> neighbor = current.data.getRefDest();
+            if (!visited.contains(neighbor.getData())) {
+                dfsRecursive(neighbor, visited);
+            }
+            current = current.next;
+        }
+    }
