@@ -87,3 +87,9 @@ public class GraphLink<E> {
             current = current.next;
         }
     }
+
+    @Override
+    public String toString() {
+        return this.listVertex.toString();
+    }
+}
