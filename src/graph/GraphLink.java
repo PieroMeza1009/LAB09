@@ -37,7 +37,7 @@ public class GraphLink<E> {
         }
         return false;
     }
-    
+
     public void removeVertex(E data) {
         Vertex<E> vRemove = listVertex.search(new Vertex<>(data));
         if (vRemove == null) return;
@@ -52,3 +52,13 @@ public class GraphLink<E> {
         // Elimina el vértice
         listVertex.remove(vRemove);
     }
+
+    public void removeEdge(E verOri, E verDes) {
+        Vertex<E> vOri = listVertex.search(new Vertex<>(verOri));
+        Vertex<E> vDes = listVertex.search(new Vertex<>(verDes));
+        if (vOri != null && vDes != null) {
+            vOri.listAdj.remove(new Edge<>(vDes));
+            vDes.listAdj.remove(new Edge<>(vOri)); // por ser no dirigido
+        }
+    }
+
