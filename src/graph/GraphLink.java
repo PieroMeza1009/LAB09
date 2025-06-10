@@ -31,5 +31,16 @@ public class GraphLink<E> {
 
     public boolean searchEdge(E verOri, E verDes) {
         Vertex<E> vOri = listVertex.search(new Vertex<E>(verOri));
+        Vertex<E> vDes = listVertex.search(new Vertex<E>(verDes));
+        if (vOri != null && vDes != null) {
+            return vOri.listAdj.search(new Edge<E>(vDes)) != null;
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return this.listVertex.toString();
+    }
 
 }
