@@ -13,4 +13,18 @@ public class Vertex<E> {
         return data;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Vertex<?>) {
+            Vertex<E> v = (Vertex<E>) o;
+            return this.data.equals(v.data);
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return this.data + " -> " + this.listAdj.toString() + "\n";
+    }
+
 }
