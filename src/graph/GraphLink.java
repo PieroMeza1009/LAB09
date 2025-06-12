@@ -223,4 +223,10 @@ public void insertEdge(E verOri, E verDes) {
             pq.add(new VertexDistance<>(node.data, distances.get(vertexData)));
             node = node.next;
         }
+        while (!pq.isEmpty()) {
+            VertexDistance<E> current = pq.poll();
+            E currentData = current.vertex.getData();
+
+            if (visited.contains(currentData)) continue;
+            visited.add(currentData);
 }
