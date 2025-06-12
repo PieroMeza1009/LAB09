@@ -83,3 +83,16 @@ public class GraphListEdge<V, E> {
         return "Vértices: " + secVertex + "\nAristas: " + secEdge;
     }
 }
+////////////////EJERCICIO 5/////////////////////////
+
+    public int gradoNodo(E data) {
+        Vertex<E> v = listVertex.search(new Vertex<>(data));
+        if (v == null) return -1;
+        int grado = 0;
+        ListLinked.Node<Edge<E>> node = v.listAdj.getHead();
+        while (node != null) {
+            grado++;
+            node = node.next;
+        }
+        return grado;
+    }
