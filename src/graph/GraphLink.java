@@ -268,4 +268,9 @@ public void insertEdge(E verOri, E verDes) {
             this.vertex = vertex;
             this.distance = distance;
         }
+        @Override
+        public int compareTo(VertexDistance<E> other) {
+            return Integer.compare(this.distance, other.distance);
+        }
+    }
 }
