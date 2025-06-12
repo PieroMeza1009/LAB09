@@ -235,4 +235,18 @@ public void insertEdge(E verOri, E verDes) {
                 Vertex<E> neighbor = adj.data.getRefDest();
                 int weight = adj.data.getWeight();
                 E neighborData = neighbor.getData();
+
+
+                if (!visited.contains(neighborData)) {
+                    int newDist = distances.get(currentData) + weight;
+                    if (newDist < distances.get(neighborData)) {
+                        distances.put(neighborData, newDist);
+                        predecessors.put(neighborData, currentData);
+                        pq.add(new VertexDistance<>(neighbor, newDist));
+                    }
+                }
+
+                adj = adj.next;
+            }
+        }
 }
