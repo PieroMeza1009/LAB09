@@ -273,4 +273,84 @@ public void insertEdge(E verOri, E verDes) {
             return Integer.compare(this.distance, other.distance);
         }
     }
+////////////////EJERCICIO 5/////////////////////////
+
+    public int gradoNodo(E data) {
+        Vertex<E> v = listVertex.search(new Vertex<>(data));
+        if (v == null) return -1;
+        int grado = 0;
+        ListLinked.Node<Edge<E>> node = v.listAdj.getHead();
+        while (node != null) {
+            grado++;
+            node = node.next;
+        }
+        return grado;
+    }
+    public boolean esCamino() {
+        int grado1 = 0, grado2 = 0;
+        ListLinked.Node<Vertex<E>> current = listVertex.getHead();
+
+        while (current != null) {
+            int grado = gradoNodo(current.data.getData());
+            if (grado == 1) grado1++;
+            else if (grado == 2) grado2++;
+            else return false;
+            current = current.next;
+        }
+
+        return grado1 == 2;
+    }
+
+    public boolean esCiclo() {
+        if (!isConexo()) return false;
+
+        ListLinked.Node<Vertex<E>> current = listVertex.getHead();
+        while (current != null) {
+            if (gradoNodo(current.data.getData()) != 2)
+                return false;
+            current = current.next;
+        }
+
+        return true;
+    }
+
+    public boolean esRueda() {
+        int n = numVertices();
+        int centro = 0, periferia = 0;
+
+        ListLinked.Node<Vertex<E>> current = listVertex.getHead();
+        while (current != null) {
+            int g = gradoNodo(current.data.getData());
+            if (g == n - 1) centro++;
+            else if (g == 3) periferia++;
+            else return false;
+            current = current.next;
+        }
+
+        return centro == 1 && periferia == (n - 1);
+    }
+
+    public boolean esCompleto() {
+        int n = numVertices();
+
+        ListLinked.Node<Vertex<E>> current = listVertex.getHead();
+        while (current != null) {
+            if (gradoNodo(current.data.getData()) != n - 1)
+                return false;
+            current = current.next;
+        }
+
+        return true;
+    }
+
+    public int numVertices() {
+        int count = 0;
+        ListLinked.Node<Vertex<E>> current = listVertex.getHead();
+        while (current != null) {
+            count++;
+            current = current.next;
+        }
+        return count;
+    }
+
 }
