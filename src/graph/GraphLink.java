@@ -88,6 +88,11 @@ public void insertEdge(E verOri, E verDes) {
         }
     }
 
+  // a) bfs(v): recorrido en anchura
+    public void bfs(E data) {
+        Vertex<E> start = listVertex.search(new Vertex<>(data));
+        if (start == null) return;
+        
     @Override
     public String toString() {
         return this.listVertex.toString();
