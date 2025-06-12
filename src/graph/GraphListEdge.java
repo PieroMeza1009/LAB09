@@ -70,4 +70,16 @@ public class GraphListEdge<V, E> {
                 } else if (edge.getEndVertex2().equals(current)) {
                     neighbor = edge.getEndVertex1();
                 }
+                if (neighbor != null && !visited.contains(neighbor)) {
+                    visited.add(neighbor);
+                    queue.add(neighbor);
+                }
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Vértices: " + secVertex + "\nAristas: " + secEdge;
+    }
 }
