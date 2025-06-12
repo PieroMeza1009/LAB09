@@ -195,4 +195,8 @@ public void insertEdge(E verOri, E verDes) {
     public boolean isConexo() {
         if (listVertex.isEmpty()) return true;
 
+        HashSet<E> visited = new HashSet<>();
+        Vertex<E> start = listVertex.getHead().data;
+        dfsRecursive(start, visited);
+
 }
