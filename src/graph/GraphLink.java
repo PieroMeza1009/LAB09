@@ -96,6 +96,13 @@ public void insertEdge(E verOri, E verDes) {
         Queue<Vertex<E>> queue = new LinkedList<>();
         HashSet<E> visited = new HashSet<>();
         
+        queue.add(start);
+        visited.add(start.getData());
+
+        while (!queue.isEmpty()) {
+            Vertex<E> current = queue.poll();
+            System.out.println(current.getData());
+
     @Override
     public String toString() {
         return this.listVertex.toString();
