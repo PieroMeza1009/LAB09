@@ -131,6 +131,10 @@ public void insertEdge(E verOri, E verDes) {
 
         queue.add(start);
         visited.add(start.getData());
+        boolean found = false;
+
+        while (!queue.isEmpty() && !found) {
+            Vertex<E> current = queue.poll();
 
 
     @Override
