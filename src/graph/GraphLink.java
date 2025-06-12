@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Stack;
 
 public class GraphLink<E> {
     protected ListLinked<Vertex<E>> listVertex;
@@ -207,4 +209,11 @@ public void insertEdge(E verOri, E verDes) {
 
         return visited.size() == totalVertices;
     }
+     //d)
+    public Stack<E> Dijkstra(E origin, E destination) {
+        Stack<E> path = new Stack<>();
+        HashMap<E, Integer> distances = new HashMap<>();
+        HashMap<E, E> predecessors = new HashMap<>();
+        HashSet<E> visited = new HashSet<>();
+        PriorityQueue<VertexDistance<E>> pq = new PriorityQueue<>();
 }
