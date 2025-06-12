@@ -92,6 +92,9 @@ public void insertEdge(E verOri, E verDes) {
     public void bfs(E data) {
         Vertex<E> start = listVertex.search(new Vertex<>(data));
         if (start == null) return;
+
+        Queue<Vertex<E>> queue = new LinkedList<>();
+        HashSet<E> visited = new HashSet<>();
         
     @Override
     public String toString() {
