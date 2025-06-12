@@ -260,4 +260,12 @@ public void insertEdge(E verOri, E verDes) {
         return path;
     }
 
+    private static class VertexDistance<E> implements Comparable<VertexDistance<E>> {
+        Vertex<E> vertex;
+        int distance;
+
+        public VertexDistance(Vertex<E> vertex, int distance) {
+            this.vertex = vertex;
+            this.distance = distance;
+        }
 }
