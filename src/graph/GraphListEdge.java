@@ -59,4 +59,15 @@ public class GraphListEdge<V, E> {
 
         queue.add(start);
         visited.add(start);
+        while (!queue.isEmpty()) {
+            VertexObj<V, E> current = queue.poll();
+            System.out.println(current.getInfo());
+
+            for (EdgeObj<V, E> edge : secEdge) {
+                VertexObj<V, E> neighbor = null;
+                if (edge.getEndVertex1().equals(current)) {
+                    neighbor = edge.getEndVertex2();
+                } else if (edge.getEndVertex2().equals(current)) {
+                    neighbor = edge.getEndVertex1();
+                }
 }
