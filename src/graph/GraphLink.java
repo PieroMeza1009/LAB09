@@ -1,6 +1,7 @@
 package graph;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -144,6 +145,14 @@ public void insertEdge(E verOri, E verDes) {
                     visited.add(neighborData);
                     predecessor.put(neighborData, current.getData());
                     queue.add(neighbor);
+                    if (neighborData.equals(destination)) {
+                        found = true;
+                        break;
+                    }
+                }
+                adjNode = adjNode.next;
+            }
+        }
 
 
     @Override
