@@ -153,6 +153,12 @@ public void insertEdge(E verOri, E verDes) {
                 adjNode = adjNode.next;
             }
         }
+            if (!found) return path;
+
+        E step = destination;
+        while (step != null) {
+            path.add(0, step);
+            step = predecessor.get(step);
 
 
     @Override
