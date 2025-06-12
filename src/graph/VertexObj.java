@@ -8,4 +8,17 @@ public class VertexObj<V, E> {
         this.info = info;
         this.position = position;
     }
+    public V getInfo() {
+        return info;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof VertexObj<?, ?>) {
+            VertexObj<?, ?> v = (VertexObj<?, ?>) o;
+            return info.equals(v.info);
+        }
+        return false;
+    }
+
 }
