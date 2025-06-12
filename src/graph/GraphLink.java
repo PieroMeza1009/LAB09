@@ -249,4 +249,15 @@ public void insertEdge(E verOri, E verDes) {
                 adj = adj.next;
             }
         }
+        if (!predecessors.containsKey(destination)) return path;
+
+        E step = destination;
+        while (step != null) {
+            path.push(step);
+            step = predecessors.get(step);
+        }
+
+        return path;
+    }
+
 }
