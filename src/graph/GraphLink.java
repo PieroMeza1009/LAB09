@@ -140,6 +140,11 @@ public void insertEdge(E verOri, E verDes) {
                 Vertex<E> neighbor = adjNode.data.getRefDest();
                 E neighborData = neighbor.getData();
 
+                if (!visited.contains(neighborData)) {
+                    visited.add(neighborData);
+                    predecessor.put(neighborData, current.getData());
+                    queue.add(neighbor);
+
 
     @Override
     public String toString() {
