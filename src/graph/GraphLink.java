@@ -180,4 +180,6 @@ public void insertEdge(E verOri, E verDes) {
         Vertex<E> vOri = listVertex.search(new Vertex<>(verOri));
         Vertex<E> vDes = listVertex.search(new Vertex<>(verDes));
         if (vOri != null && vDes != null) {
+            if (vOri.listAdj.search(new Edge<>(vDes)) == null)
+                vOri.listAdj.insertLast(new Edge<>(vDes, weight));
 }
