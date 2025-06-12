@@ -198,5 +198,13 @@ public void insertEdge(E verOri, E verDes) {
         HashSet<E> visited = new HashSet<>();
         Vertex<E> start = listVertex.getHead().data;
         dfsRecursive(start, visited);
+        int totalVertices = 0;
+        ListLinked.Node<Vertex<E>> current = listVertex.getHead();
+        while (current != null) {
+            totalVertices++;
+            current = current.next;
+        }
 
+        return visited.size() == totalVertices;
+    }
 }
