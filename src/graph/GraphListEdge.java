@@ -25,4 +25,16 @@ public class GraphListEdge<V, E> {
             secEdge.add(newEdge);
         }
     }
+
+    public boolean searchVertex(V data) {
+        return getVertex(data) != null;
+    }
+
+    private VertexObj<V, E> getVertex(V data) {
+        for (VertexObj<V, E> v : secVertex) {
+            if (v.getInfo().equals(data)) return v;
+        }
+        return null;
+    }
+
 }
