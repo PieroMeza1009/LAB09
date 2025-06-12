@@ -190,5 +190,9 @@ public void insertEdge(E verOri, E verDes) {
     public ArrayList<E> shortPath(E origin, E destination) {
         return bfsPath(origin, destination);
     }
+     //C)
+
+    public boolean isConexo() {
+        if (listVertex.isEmpty()) return true;
 
 }
