@@ -186,4 +186,9 @@ public void insertEdge(E verOri, E verDes) {
                 vDes.listAdj.insertLast(new Edge<>(vOri, weight));
         }
     }
+     //b)
+    public ArrayList<E> shortPath(E origin, E destination) {
+        return bfsPath(origin, destination);
+    }
+
 }
