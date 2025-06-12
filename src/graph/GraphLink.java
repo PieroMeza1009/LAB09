@@ -95,13 +95,20 @@ public void insertEdge(E verOri, E verDes) {
 
         Queue<Vertex<E>> queue = new LinkedList<>();
         HashSet<E> visited = new HashSet<>();
-        
+
         queue.add(start);
         visited.add(start.getData());
 
         while (!queue.isEmpty()) {
             Vertex<E> current = queue.poll();
             System.out.println(current.getData());
+
+            ListLinked.Node<Edge<E>> adjNode = current.listAdj.getHead();
+            while (adjNode != null) {
+                Vertex<E> neighbor = adjNode.data.getRefDest();
+                if (!visited.contains(neighbor.getData())) {
+                    visited.add(neighbor.getData());
+                    queue.add(neighbor);
 
     @Override
     public String toString() {
