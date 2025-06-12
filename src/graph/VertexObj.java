@@ -21,4 +21,9 @@ public class VertexObj<V, E> {
         return false;
     }
 
+    @Override
+    public String toString() {
+        return info.toString();
+    }
+
 }
