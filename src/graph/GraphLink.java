@@ -216,4 +216,11 @@ public void insertEdge(E verOri, E verDes) {
         HashMap<E, E> predecessors = new HashMap<>();
         HashSet<E> visited = new HashSet<>();
         PriorityQueue<VertexDistance<E>> pq = new PriorityQueue<>();
+        ListLinked.Node<Vertex<E>> node = listVertex.getHead();
+        while (node != null) {
+            E vertexData = node.data.getData();
+            distances.put(vertexData, vertexData.equals(origin) ? 0 : Integer.MAX_VALUE);
+            pq.add(new VertexDistance<>(node.data, distances.get(vertexData)));
+            node = node.next;
+        }
 }
