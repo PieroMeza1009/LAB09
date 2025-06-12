@@ -135,6 +135,10 @@ public void insertEdge(E verOri, E verDes) {
 
         while (!queue.isEmpty() && !found) {
             Vertex<E> current = queue.poll();
+            ListLinked.Node<Edge<E>> adjNode = current.listAdj.getHead();
+            while (adjNode != null) {
+                Vertex<E> neighbor = adjNode.data.getRefDest();
+                E neighborData = neighbor.getData();
 
 
     @Override
