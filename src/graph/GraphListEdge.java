@@ -50,4 +50,13 @@ public class GraphListEdge<V, E> {
         }
         return false;
     }
+    public void bfs(V startData) {
+        VertexObj<V, E> start = getVertex(startData);
+        if (start == null) return;
+
+        Queue<VertexObj<V, E>> queue = new LinkedList<>();
+        Set<VertexObj<V, E>> visited = new HashSet<>();
+
+        queue.add(start);
+        visited.add(start);
 }
