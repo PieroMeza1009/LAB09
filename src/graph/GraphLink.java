@@ -1,5 +1,6 @@
 package graph;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -116,6 +117,10 @@ public void insertEdge(E verOri, E verDes) {
             }
         }
     }
+
+    // b) bfsPath(v, z): camino entre v y z si existe
+    public ArrayList<E> bfsPath(E origin, E destination) {
+        ArrayList<E> path = new ArrayList<>();
 
     @Override
     public String toString() {
