@@ -92,6 +92,7 @@ public void insertEdge(E verOri, E verDes) {
         }
     }
 
+    /////////////EJERCICIO 1/////////////////////////
   // a) bfs(v): recorrido en anchura
     public void bfs(E data) {
         Vertex<E> start = listVertex.search(new Vertex<>(data));
@@ -170,4 +171,13 @@ public void insertEdge(E verOri, E verDes) {
     public String toString() {
         return this.listVertex.toString();
     }
+
+     /////////////EJERCICIO 2/////////////////////////
+
+
+     //A)
+    public void insertEdgeWeight(E verOri, E verDes, int weight) {
+        Vertex<E> vOri = listVertex.search(new Vertex<>(verOri));
+        Vertex<E> vDes = listVertex.search(new Vertex<>(verDes));
+        if (vOri != null && vDes != null) {
 }
