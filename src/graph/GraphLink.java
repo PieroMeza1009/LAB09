@@ -125,6 +125,13 @@ public void insertEdge(E verOri, E verDes) {
         Vertex<E> end = listVertex.search(new Vertex<>(destination));
 
         if (start == null || end == null) return path;
+        Queue<Vertex<E>> queue = new LinkedList<>();
+        HashMap<E, E> predecessor = new HashMap<>();
+        HashSet<E> visited = new HashSet<>();
+
+        queue.add(start);
+        visited.add(start.getData());
+
 
     @Override
     public String toString() {
