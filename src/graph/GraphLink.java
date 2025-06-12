@@ -121,6 +121,10 @@ public void insertEdge(E verOri, E verDes) {
     // b) bfsPath(v, z): camino entre v y z si existe
     public ArrayList<E> bfsPath(E origin, E destination) {
         ArrayList<E> path = new ArrayList<>();
+        Vertex<E> start = listVertex.search(new Vertex<>(origin));
+        Vertex<E> end = listVertex.search(new Vertex<>(destination));
+
+        if (start == null || end == null) return path;
 
     @Override
     public String toString() {
