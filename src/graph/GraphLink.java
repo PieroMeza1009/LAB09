@@ -1,6 +1,8 @@
 package graph;
 
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class GraphLink<E> {
     protected ListLinked<Vertex<E>> listVertex;
@@ -109,6 +111,11 @@ public void insertEdge(E verOri, E verDes) {
                 if (!visited.contains(neighbor.getData())) {
                     visited.add(neighbor.getData());
                     queue.add(neighbor);
+                }
+                adjNode = adjNode.next;
+            }
+        }
+    }
 
     @Override
     public String toString() {
