@@ -229,4 +229,10 @@ public void insertEdge(E verOri, E verDes) {
 
             if (visited.contains(currentData)) continue;
             visited.add(currentData);
+
+            ListLinked.Node<Edge<E>> adj = current.vertex.listAdj.getHead();
+            while (adj != null) {
+                Vertex<E> neighbor = adj.data.getRefDest();
+                int weight = adj.data.getWeight();
+                E neighborData = neighbor.getData();
 }
