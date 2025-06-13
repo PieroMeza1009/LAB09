@@ -1,4 +1,5 @@
 package pruebalibreria;
+import lib.*;
 import org.jgrapht.*;
 import org.jgrapht.alg.shortestpath.DijkstraManyToManyShortestPaths;
 import org.jgrapht.graph.DefaultWeightedEdge;

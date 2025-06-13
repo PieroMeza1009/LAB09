@@ -1,11 +1,14 @@
 package graph;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Set;
 import java.util.Stack;
 
 public class GraphLink<E> {
@@ -353,4 +356,244 @@ public void insertEdge(E verOri, E verDes) {
         return count;
     }
 
+  // EJERCICIO 6: REPRESENTACIONES DEL GRAFO
+    // =========================
+
+    public void representacionFormal() {
+        StringBuilder vStr = new StringBuilder("V = {");
+        ListLinked.Node<Vertex<E>> vNode = listVertex.getHead();
+        while (vNode != null) {
+            vStr.append(vNode.data.getData());
+            if (vNode.next != null) vStr.append(", ");
+            vNode = vNode.next;
+        }
+        vStr.append("}");
+
+        StringBuilder eStr = new StringBuilder("E = {");
+        HashSet<String> aristas = new HashSet<>();
+        vNode = listVertex.getHead();
+        while (vNode != null) {
+            E v1 = vNode.data.getData();
+            ListLinked.Node<Edge<E>> adj = vNode.data.listAdj.getHead();
+            while (adj != null) {
+                E v2 = adj.data.getRefDest().getData();
+                String a = "(" + v1 + ", " + v2 + ")";
+                String b = "(" + v2 + ", " + v1 + ")";
+                if (!aristas.contains(b)) aristas.add(a);
+                adj = adj.next;
+            }
+            vNode = vNode.next;
+        }
+        eStr.append(String.join(", ", aristas)).append("}");
+
+        System.out.println(vStr);
+        System.out.println(eStr);
+    }
+
+    public void listaAdyacencia() {
+        ListLinked.Node<Vertex<E>> vNode = listVertex.getHead();
+        while (vNode != null) {
+            System.out.print(vNode.data.getData() + " -> ");
+            ListLinked.Node<Edge<E>> adj = vNode.data.listAdj.getHead();
+            while (adj != null) {
+                System.out.print(adj.data.getRefDest().getData());
+                if (adj.next != null) System.out.print(", ");
+                adj = adj.next;
+            }
+            System.out.println();
+            vNode = vNode.next;
+        }
+    }
+
+    public void matrizAdyacencia() {
+        ArrayList<E> vertices = new ArrayList<>();
+        ListLinked.Node<Vertex<E>> vNode = listVertex.getHead();
+        while (vNode != null) {
+            vertices.add(vNode.data.getData());
+            vNode = vNode.next;
+        }
+
+        System.out.print("   ");
+        for (E v : vertices) {
+            System.out.print(v + " ");
+        }
+        System.out.println();
+
+        for (E v1 : vertices) {
+            System.out.print(v1 + " ");
+            for (E v2 : vertices) {
+                System.out.print(" " + (searchEdge(v1, v2) ? "1" : "0"));
+            }
+            System.out.println();
+        }
+    }
+// EJERCICIO 7: GRAFOS DIRIGIDOS
+// ==============================
+
+// Grado de entrada: cuántas aristas llegan al nodo
+public int gradoEntrada(E data) {
+    int count = 0;
+    ListLinked.Node<Vertex<E>> current = listVertex.getHead();
+    while (current != null) {
+        ListLinked.Node<Edge<E>> adj = current.data.listAdj.getHead();
+        while (adj != null) {
+            if (adj.data.getRefDest().getData().equals(data)) {
+                count++;
+            }
+            adj = adj.next;
+        }
+        current = current.next;
+    }
+    return count;
+}
+
+// Grado de salida: cuántas aristas salen del nodo
+public int gradoSalida(E data) {
+    Vertex<E> v = listVertex.search(new Vertex<>(data));
+    if (v == null) return -1;
+
+    int count = 0;
+    ListLinked.Node<Edge<E>> adj = v.listAdj.getHead();
+    while (adj != null) {
+        count++;
+        adj = adj.next;
+    }
+    return count;
+}
+
+// Verifica si el grafo dirigido es un camino (inicio y fin definidos)
+public boolean esCaminoDirigido() {
+    int start = 0, end = 0;
+
+    ListLinked.Node<Vertex<E>> current = listVertex.getHead();
+    while (current != null) {
+        int in = gradoEntrada(current.data.getData());
+        int out = gradoSalida(current.data.getData());
+
+        if (in == 0 && out == 1) start++;
+        else if (in == 1 && out == 0) end++;
+        else if (!(in == 1 && out == 1)) return false;
+
+        current = current.next;
+    }
+
+    return start == 1 && end == 1;
+}
+
+// Verifica si el grafo dirigido es un ciclo (todos con in=1 y out=1)
+public boolean esCicloDirigido() {
+    ListLinked.Node<Vertex<E>> current = listVertex.getHead();
+    while (current != null) {
+        if (gradoEntrada(current.data.getData()) != 1 || gradoSalida(current.data.getData()) != 1)
+            return false;
+        current = current.next;
+    }
+    return true;
+}
+
+// Verifica si el grafo dirigido es completo (cada nodo con n-1 salidas)
+public boolean esCompletoDirigido() {
+    int n = numVertices();
+
+    ListLinked.Node<Vertex<E>> current = listVertex.getHead();
+    while (current != null) {
+        if (gradoSalida(current.data.getData()) != n - 1)
+            return false;
+        current = current.next;
+    }
+
+    return true;
+}
+
+    // EJERCICIO 9///////////////////////
+
+    public boolean esIsomorfo(GraphLink<E> otro) {
+        if (this.numVertices() != otro.numVertices()) return false;
+        ListLinked.Node<Vertex<E>> v1 = this.listVertex.getHead();
+        while (v1 != null) {
+            E dato = v1.data.getData();
+            if (!otro.searchVertex(dato)) return false;
+            List<E> vecinos1 = obtenerVecinos(dato);
+            List<E> vecinos2 = otro.obtenerVecinos(dato);
+            Collections.sort((List)vecinos1);
+            Collections.sort((List)vecinos2);
+            if (!vecinos1.equals(vecinos2)) return false;
+            v1 = v1.next;
+        }
+        return true;
+    }
+
+    private List<E> obtenerVecinos(E data) {
+        List<E> vecinos = new ArrayList<>();
+        Vertex<E> v = listVertex.search(new Vertex<>(data));
+        if (v != null) {
+            ListLinked.Node<Edge<E>> node = v.listAdj.getHead();
+            while (node != null) {
+                vecinos.add(node.data.getRefDest().getData());
+                node = node.next;
+            }
+        }
+        return vecinos;
+    }
+
+    public boolean esPlano() {
+        int v = numVertices();
+        int a = contarAristasDirigidas();
+        return v < 3 || a <= 3 * v - 6;
+    }
+
+    private int contarAristasDirigidas() {
+        int total = 0;
+        ListLinked.Node<Vertex<E>> node = listVertex.getHead();
+        while (node != null) {
+            total += gradoSalida(node.data.getData());
+            node = node.next;
+        }
+        return total;
+    }
+
+    public boolean esConexoDirigido() {
+        ListLinked.Node<Vertex<E>> current = listVertex.getHead();
+        while (current != null) {
+            Set<E> visitados = new HashSet<>();
+            dfsDesde(current.data, visitados);
+            if (visitados.size() != numVertices()) return false;
+            current = current.next;
+        }
+        return true;
+    }
+
+    private void dfsDesde(Vertex<E> v, Set<E> visitados) {
+        if (visitados.contains(v.getData())) return;
+        visitados.add(v.getData());
+        ListLinked.Node<Edge<E>> adj = v.listAdj.getHead();
+        while (adj != null) {
+            dfsDesde(adj.data.getRefDest(), visitados);
+            adj = adj.next;
+        }
+    }
+
+    public boolean esAutoComplementario() {
+        GraphLink<E> complemento = new GraphLink<>();
+        ListLinked.Node<Vertex<E>> node = listVertex.getHead();
+        while (node != null) {
+            complemento.insertVertex(node.data.getData());
+            node = node.next;
+        }
+        node = listVertex.getHead();
+        while (node != null) {
+            Vertex<E> v1 = node.data;
+            ListLinked.Node<Vertex<E>> aux = listVertex.getHead();
+            while (aux != null) {
+                E d1 = v1.getData();
+                E d2 = aux.data.getData();
+                if (!d1.equals(d2) && !this.searchEdge(d1, d2)) {
+                    complemento.insertEdge(d1, d2);
+                }
+                aux = aux.next;
+            }
+            node = node.next;
+        }
+        return this.esIsomorfo(complemento);
+    }
 }
