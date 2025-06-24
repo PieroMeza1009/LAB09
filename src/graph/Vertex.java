@@ -5,8 +5,9 @@ public class Vertex<E> {  // Clase genérica Vertex que representa un nodo del g
     private E data; // Contiene la información del vértice (puede ser un número, string, objeto, etc.)
     protected ListLinked<Edge<E>> listAdj;// Lista de adyacencia que contiene las aristas (conexiones) desde este vértice
 
+    //este es el constructor de la clase vertex
     public Vertex(E data) {
-        this.data = data;
+        this.data = data; //// aca se asigna el dato recibido al atributo data
         listAdj = new ListLinked<Edge<E>>();
     }
 

@@ -11,33 +11,35 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
 
+//esta es una clase genérica que representa un grafo no dirigido usando listas de adyacencia
 public class GraphLink<E> {
     protected ListLinked<Vertex<E>> listVertex;
 
     public GraphLink() {
-        listVertex = new ListLinked<Vertex<E>>();
+        listVertex = new ListLinked<Vertex<E>>();// Inicializamos la lista de vértices vacía
     }
 
+
     public void insertVertex(E data) {
-        Vertex<E> newVertex = new Vertex<>(data);
-        if (listVertex.search(newVertex) == null) {
-            listVertex.insertLast(newVertex);
+        Vertex<E> newVertex = new Vertex<>(data); // Crea un nuevo vértice con el dato
+        if (listVertex.search(newVertex) == null) { // Verifica que no exista ya en la lista
+            listVertex.insertLast(newVertex); // Lo agrega al final de la lista de vértices
         }
     }
 
-public void insertEdge(E verOri, E verDes) {
-    Vertex<E> vOri = listVertex.search(new Vertex<>(verOri));
-    Vertex<E> vDes = listVertex.search(new Vertex<>(verDes));
-    if (vOri != null && vDes != null) {
-        if (vOri.listAdj.search(new Edge<>(vDes)) == null)
-            vOri.listAdj.insertLast(new Edge<>(vDes));
-        if (vDes.listAdj.search(new Edge<>(vOri)) == null)
-            vDes.listAdj.insertLast(new Edge<>(vOri)); // porque es grafo no dirigido
+    public void insertEdge(E verOri, E verDes) {
+        Vertex<E> vOri = listVertex.search(new Vertex<>(verOri)); // Busca el vértice origen
+        Vertex<E> vDes = listVertex.search(new Vertex<>(verDes)); // Busca el vértice destino
+        if (vOri != null && vDes != null) {
+            if (vOri.listAdj.search(new Edge<>(vDes)) == null) // Si no existe la arista, la inserta
+                vOri.listAdj.insertLast(new Edge<>(vDes));
+            if (vDes.listAdj.search(new Edge<>(vOri)) == null) // Como es no dirigido, agrega en ambas direcciones
+                vDes.listAdj.insertLast(new Edge<>(vOri));
         }
     }
 
     public boolean searchVertex(E data) {
-        return listVertex.search(new Vertex<E>(data)) != null;
+        return listVertex.search(new Vertex<E>(data)) != null; // Devuelve true si el vértice está en el grafo
     }
 
     public boolean searchEdge(E verOri, E verDes) {
