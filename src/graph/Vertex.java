@@ -1,8 +1,9 @@
 package graph;
 
-public class Vertex<E> {
-    private E data;
-    protected ListLinked<Edge<E>> listAdj;
+public class Vertex<E> {  // Clase genérica Vertex que representa un nodo del grafo, donde E es el tipo de dato almacenado
+
+    private E data; // Contiene la información del vértice (puede ser un número, string, objeto, etc.)
+    protected ListLinked<Edge<E>> listAdj;// Lista de adyacencia que contiene las aristas (conexiones) desde este vértice
 
     public Vertex(E data) {
         this.data = data;
